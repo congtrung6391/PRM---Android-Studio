@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Login</string>
+    <string name="login_button">Login</string>
+    <string name="login">Login</string>
+    <string name="online_tutor">Online Tutor</string>
+    <string name="or_register_button">Or register a new account</string>
+</resources>
