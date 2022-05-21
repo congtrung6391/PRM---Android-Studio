@@ -4,4 +4,11 @@
     <string name="login">Login</string>
     <string name="online_tutor">Online Tutor</string>
     <string name="or_register_button">Or register a new account</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="fullname">Full name</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="register_button">Register</string>
+    <string name="or_login_button">You already have an account?</string>
 </resources>

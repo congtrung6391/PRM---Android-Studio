@@ -8,8 +8,13 @@
         <entry key="..\:/Users/Admin/AndroidStudioProjects/Login/app/src/main/res/drawable/login_backdrop.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/Login/app/src/main/res/drawable/outlined_button.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/Login/app/src/main/res/drawable/outlined_input.xml" value="0.14322916666666666" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/Login/app/src/main/res/drawable/register_backdrop.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/Login/app/src/main/res/drawable/rounded_button.xml" value="0.26614583333333336" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/Login/app/src/main/res/layout/activity_home.xml" value="0.25" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/Login/app/src/main/res/layout/activity_login.xml" value="0.11614583333333334" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/Login/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/Login/app/src/main/res/layout/activity_register.xml" value="0.2" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/Login/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2520833333333333" />
       </map>
     </option>
   </component>
