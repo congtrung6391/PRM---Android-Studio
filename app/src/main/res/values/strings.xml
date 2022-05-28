@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Login</string>
+    <string name="app_name">Online Tutor</string>
     <string name="login_button">Login</string>
     <string name="login">Login</string>
     <string name="online_tutor">Online Tutor</string>
@@ -11,4 +11,8 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="register_button">Register</string>
     <string name="or_login_button">You already have an account?</string>
+    <string name="english">English</string>
+    <string name="france">France</string>
+    <string name="math">Math</string>
+    <string name="physic">Physic</string>
 </resources>

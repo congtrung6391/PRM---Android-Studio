@@ -1,4 +1,4 @@
-package com.example.login;
+package com.example.onlinetutor;
 
 import android.content.Intent;
 import android.os.Build;
@@ -33,7 +33,7 @@ public class LoginActivity extends AppCompatActivity {
     }
     
     boolean verifyUser(String username, String password) {
-        return username.equals("admin") && password.equals("123456");
+        return !username.equals("wrongadmin") && password.equals("123456");
     }
 
     void onSetupListener() {
