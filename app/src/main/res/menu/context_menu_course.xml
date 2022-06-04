@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/add_course"
+        android:icon="@drawable/ic_search"
+        android:title="@string/add_course"/>
+    <item android:id="@+id/view_course"
+        android:title="@string/view_course"/>
+</menu>

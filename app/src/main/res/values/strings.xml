@@ -15,4 +15,20 @@
     <string name="france">France</string>
     <string name="math">Math</string>
     <string name="physic">Physic</string>
+    <string name="search">Search</string>
+    <string name="list_course">List courses</string>
+    <string name="my_course">My courses</string>
+    <string name="add_course">Learn this course</string>
+    <string name="view_course">View this course</string>
+
+
+    <string name="title_activity_my_course">MyCourseActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 </resources>

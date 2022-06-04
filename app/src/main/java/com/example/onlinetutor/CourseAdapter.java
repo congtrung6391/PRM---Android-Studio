@@ -3,28 +3,52 @@ package com.example.onlinetutor;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder> {
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener  {
         private TextView nameTextView;
         private TextView descriptionTextView;
+        private String courseId;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             nameTextView = itemView.findViewById(R.id.item_name);
             descriptionTextView = itemView.findViewById(R.id.item_description);
+            itemView.setOnCreateContextMenuListener(this);
+        }
+
+        @Override
+        public void onCreateContextMenu(ContextMenu menu, View v,
+                                        ContextMenu.ContextMenuInfo menuInfo) {
+            menu.add(Integer.parseInt(courseId), R.id.add_course, 0, R.string.add_course);
+            menu.add(Integer.parseInt(courseId), R.id.view_course, 10, R.string.view_course);
         }
     }
 
     private Context mContext;
     private ArrayList<Course> mCourses;
+    private int position;
+
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
 
     public CourseAdapter(Context mContext, ArrayList<Course> mCourses) {
         this.mContext = mContext;
@@ -44,6 +68,14 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
         Course course = mCourses.get(position);
         holder.nameTextView.setText(course.getCourseName());
         holder.descriptionTextView.setText(course.getCourseDescription());
+        holder.courseId = course.getId();
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                setPosition(holder.getPosition());
+                return false;
+            }
+        });
     }
 
     @Override
