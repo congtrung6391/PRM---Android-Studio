@@ -3,6 +3,7 @@ package com.example.onlinetutor;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,6 +13,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
+
+import com.example.onlinetutor.objects.Course;
+import com.example.onlinetutor.objects.CourseType;
 
 import java.util.ArrayList;
 
@@ -152,6 +156,9 @@ public class ListActivity extends AppCompatActivity {
             case R.id.my_course:
                 openMyCourse();
                 return true;
+            case R.id.log_out:
+                logout();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -181,6 +188,16 @@ public class ListActivity extends AppCompatActivity {
 
     private void openMyCourse() {
         startActivity(myCourseIntent);
+    }
+
+    private void logout() {
+        SharedPreferences pref = getSharedPreferences("info.save",MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.clear();
+        editor.commit();
+        Intent intent = new Intent(ListActivity.this, LoginActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     private void openDetail(String id) {

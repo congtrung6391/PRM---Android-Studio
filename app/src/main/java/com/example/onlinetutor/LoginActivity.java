@@ -1,30 +1,44 @@
 package com.example.onlinetutor;
 
+import android.content.ContentValues;
 import android.content.Intent;
-import android.os.Build;
-import android.support.v7.app.ActionBar;
+import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.onlinetutor.dao.UserDao;
+import com.example.onlinetutor.objects.User;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
     private static final String LOG_TAG = "LoginActivity";
     Button loginButton;
     Button registerLinkButton;
-    TextView usernameTextView;
-    TextView passwordTextView;
+    EditText usernameTextView;
+    EditText passwordTextView;
+    CheckBox checkBox;
     Intent homeIntent;
     Intent registerIntent;
+    UserDao userDao;
 
     void onSetupController() {
         loginButton = findViewById(R.id.login_button);
         registerLinkButton = findViewById(R.id.button2);
         usernameTextView = findViewById(R.id.editTextTextUsername);
         passwordTextView = findViewById(R.id.editTextTextPassword);
+        checkBox = findViewById(R.id.rememberMe);
+        userDao = new UserDao(LoginActivity.this);
     }
 
     void onSetupIntent() {
@@ -33,21 +47,28 @@ public class LoginActivity extends AppCompatActivity {
     }
     
     boolean verifyUser(String username, String password) {
-        return !username.equals("wrongadmin") && password.equals("123456");
+        return userDao.isExist(username, password);
+    }
+
+    void login() {
+        String username = usernameTextView.getText().toString();
+        String password = passwordTextView.getText().toString();
+        boolean check = checkBox.isChecked();
+        if (verifyUser(username, password)) {
+            homeIntent.putExtra("username", username);
+            saveInfo(username, password, check);
+            Toast.makeText(LoginActivity.this, "Successful login", Toast.LENGTH_LONG).show();
+            startActivity(homeIntent);
+        } else {
+            Toast.makeText(LoginActivity.this, "Unsuccessful login", Toast.LENGTH_LONG).show();
+        }
     }
 
     void onSetupListener() {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String username = usernameTextView.getText().toString();
-                String password = passwordTextView.getText().toString();
-                if (verifyUser(username, password)) {
-                    homeIntent.putExtra("username", username);
-                    startActivity(homeIntent);
-                } else {
-                    Toast.makeText(LoginActivity.this, "Unsuccessful login", Toast.LENGTH_LONG).show();
-                }
+                login();
             }
         });
         registerLinkButton.setOnClickListener(new View.OnClickListener() {
@@ -68,5 +89,40 @@ public class LoginActivity extends AppCompatActivity {
         onSetupController();
         onSetupIntent();
         onSetupListener();
+        loadData();
+    }
+
+    private void saveInfo(String un, String pw, boolean check){
+        SharedPreferences pref = getSharedPreferences("info.save",MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        if(check){
+            editor.putString("username", un);
+            editor.putString("password", pw);
+            editor.putBoolean("check",check);
+        }
+        else {
+            editor.clear();
+        }
+        editor.commit();
+    }
+
+    private  void loadData(){
+        SharedPreferences pref = getSharedPreferences("info.save",MODE_PRIVATE);
+        boolean check = pref.getBoolean("check",false);
+        if(check){
+            usernameTextView.setText(pref.getString("username",""));
+            passwordTextView.setText(pref.getString("password",""));
+            checkBox.setChecked(true);
+        }
+        login();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 2) {
+            String lgMessage = data.getStringExtra("logout");
+            Toast.makeText(LoginActivity.this, lgMessage, Toast.LENGTH_LONG).show();
+        }
     }
 }

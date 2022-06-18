@@ -1,6 +1,8 @@
-package com.example.onlinetutor;
+package com.example.onlinetutor.objects;
 
-public class Course {
+import java.io.Serializable;
+
+public class Course implements Serializable {
     private String id;
     private String courseName;
     private String courseDescription;
@@ -27,13 +29,13 @@ public class Course {
         return courseType;
     }
 
-    void setCourseName(String name) {
+    public void setCourseName(String name) {
         this.courseName = name;
     }
 
-    void setCourseDescription(String des) {
+    public void setCourseDescription(String des) {
         this.courseDescription = des;
     }
 
-    void setCourseType(CourseType type) { this.courseType = type; }
+    public void setCourseType(CourseType type) { this.courseType = type; }
 }

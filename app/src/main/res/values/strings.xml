@@ -33,4 +33,7 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="start">Start</string>
     <string name="stop">Stop</string>
+    <string name="remember_me">Remember me</string>
+
+    <string name="logout">Logout</string>
 </resources>

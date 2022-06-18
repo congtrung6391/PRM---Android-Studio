@@ -1,6 +1,8 @@
-package com.example.onlinetutor;
+package com.example.onlinetutor.objects;
 
-public class CourseType {
+import java.io.Serializable;
+
+public class CourseType implements Serializable {
     private String id;
     private String typeName;
 
