@@ -6,9 +6,9 @@ public class Course implements Serializable {
     private String id;
     private String courseName;
     private String courseDescription;
-    private CourseType courseType;
+    private String courseType;
 
-    public Course(String id, String name, String des, CourseType type) {
+    public Course(String id, String name, String des, String type) {
         this.id = id;
         this.courseName = name;
         this.courseDescription = des;
@@ -25,7 +25,7 @@ public class Course implements Serializable {
         return courseName;
     }
 
-    public CourseType getCourseType() {
+    public String getCourseType() {
         return courseType;
     }
 
@@ -37,5 +37,5 @@ public class Course implements Serializable {
         this.courseDescription = des;
     }
 
-    public void setCourseType(CourseType type) { this.courseType = type; }
+    public void setCourseType(String type) { this.courseType = type; }
 }

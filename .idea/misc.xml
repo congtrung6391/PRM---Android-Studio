@@ -16,7 +16,10 @@
         <entry key="..\:/Users/Admin/AndroidStudioProjects/Login/app/src/main/res/layout/activity_register.xml" value="0.2" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/Login/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2520833333333333" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/OnlineTutor/app/src/main/res/drawable/ic_search.xml" value="0.26614583333333336" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/OnlineTutor/app/src/main/res/drawable/outlined_button_primary.xml" value="0.1453125" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/OnlineTutor/app/src/main/res/drawable/outlined_input.xml" value="0.26614583333333336" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/OnlineTutor/app/src/main/res/drawable/rounded_button_primary.xml" value="0.1453125" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/OnlineTutor/app/src/main/res/layout/activity_add_edit_course.xml" value="0.264" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/OnlineTutor/app/src/main/res/layout/activity_detail.xml" value="0.264" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/OnlineTutor/app/src/main/res/layout/activity_home.xml" value="0.536" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/OnlineTutor/app/src/main/res/layout/activity_list.xml" value="0.25" />
@@ -24,7 +27,7 @@
         <entry key="..\:/Users/Admin/AndroidStudioProjects/OnlineTutor/app/src/main/res/layout/activity_my_course.xml" value="0.25" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/OnlineTutor/app/src/main/res/layout/activity_my_course2.xml" value="0.2359375" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/OnlineTutor/app/src/main/res/layout/list_activity_menu.xml" value="0.25" />
-        <entry key="..\:/Users/Admin/AndroidStudioProjects/OnlineTutor/app/src/main/res/layout/list_item_layout.xml" value="0.264" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/OnlineTutor/app/src/main/res/layout/list_item_layout.xml" value="0.536" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/OnlineTutor/app/src/main/res/menu/context_menu_course.xml" value="0.25" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/OnlineTutor/app/src/main/res/menu/list_activity_menu.xml" value="0.536" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/OnlineTutor/app/src/main/res/xml/searchable.xml" value="0.25" />

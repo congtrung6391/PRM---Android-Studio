@@ -36,4 +36,13 @@
     <string name="remember_me">Remember me</string>
 
     <string name="logout">Logout</string>
+    <string name="add_new_course">Add a new courset</string>
+    <string name="save">Save</string>
+    <string name="course_id">Course ID</string>
+    <string name="course_name">Course Name</string>
+    <string name="course_description">Course Description</string>
+    <string name="course_type">Subject</string>
+
+    <string name="add_course_title">Add a new course</string>
+    <string name="edit_course_title">Edit course</string>
 </resources>

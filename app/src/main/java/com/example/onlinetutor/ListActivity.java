@@ -4,33 +4,46 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.onlinetutor.dao.CourseDAO;
 import com.example.onlinetutor.objects.Course;
 import com.example.onlinetutor.objects.CourseType;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ListActivity extends AppCompatActivity {
     private ArrayList<Course> mCourses;
     private RecyclerView mRecyclerCourse;
     private CourseAdapter mCourseAdapter;
     private String filterType;
-    private String filterName = null;
-    private ArrayList<Course> initialCourses = new ArrayList<Course>();
+    private String filterName = "";
+    // private ArrayList<Course> initialCourses = new ArrayList<Course>();
 
     private Intent myCourseIntent;
     private Intent detailIntent;
+    private Intent addNewCourseIntent;
+    private Intent editCourseIntent;
+
+    private Button addNewCourseButton;
+
+    CourseDAO courseDao;
 
     private void initData() {
+        /*
         initialCourses.add(new Course("1", "Math level 1", "Basic math", new CourseType("math")));
         initialCourses.add(new Course("2", "Math level 2", "Basic math", new CourseType("math")));
         initialCourses.add(new Course("3", "Math level 3", "Basic math", new CourseType("math")));
@@ -90,11 +103,28 @@ public class ListActivity extends AppCompatActivity {
         initialCourses.add(new Course("57", "Physic level 8", "Physic math", new CourseType("physic")));
         initialCourses.add(new Course("58", "Physic level 9", "Physic math", new CourseType("physic")));
         initialCourses.add(new Course("59", "Physic level 10", "Physic math", new CourseType("physic")));
+        */
+    }
+
+    private void setupController() {
+        addNewCourseButton = findViewById(R.id.add_course_button);
     }
 
     private void setupIntent() {
         myCourseIntent = new Intent(ListActivity.this, MyCourseActivity.class);
         detailIntent = new Intent(ListActivity.this, DetailActivity.class);
+        addNewCourseIntent = new Intent(ListActivity.this, AddEditCourse.class);
+    }
+
+    private void setupListener() {
+        addNewCourseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addNewCourseIntent.putExtra("class_type", filterType);
+                addNewCourseIntent.putExtra("is_new", "new");
+                startActivity(addNewCourseIntent);
+            }
+        });
     }
 
     @Override
@@ -103,9 +133,13 @@ public class ListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list);
 
         initData();
+        setupController();
         setupIntent();
+        setupListener();
 
         handleIntent(getIntent());
+
+        courseDao = new CourseDAO(ListActivity.this);
 
         mRecyclerCourse = findViewById(R.id.recycler_list);
         registerForContextMenu(mRecyclerCourse);
@@ -118,6 +152,7 @@ public class ListActivity extends AppCompatActivity {
         mRecyclerCourse.setAdapter(mCourseAdapter);
         mRecyclerCourse.setLayoutManager(new LinearLayoutManager(this));
     }
+
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
@@ -132,6 +167,7 @@ public class ListActivity extends AppCompatActivity {
         }
         return super.onContextItemSelected(item);
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -151,6 +187,7 @@ public class ListActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.my_course:
@@ -178,12 +215,8 @@ public class ListActivity extends AppCompatActivity {
     }
 
     private void createHeroList(String type, String filter) {
-        for (Course course : initialCourses) {
-            if ((type == null || (type != null && course.getCourseType().getTypeName().equals(type)))
-                && (filter == null || (filter != null && course.getCourseName().contains(filter)))) {
-                mCourses.add(course);
-            }
-        }
+        Log.d("List", mCourses.toString());
+        mCourses = courseDao.readAll(type, filter);
     }
 
     private void openMyCourse() {
@@ -208,5 +241,13 @@ public class ListActivity extends AppCompatActivity {
 
     private void addCourse(String id) {
         Toast.makeText(ListActivity.this, "Course is added", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 2) {
+            String lgmessage = data.getStringExtra("logout");
+        }
     }
 }

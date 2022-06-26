@@ -7,7 +7,7 @@ import android.support.annotation.Nullable;
 
 public class DBHelper extends SQLiteOpenHelper {
     public DBHelper(@Nullable Context context) {
-        super(context, "lab9", null, 1);
+        super(context, "lab10", null, 1);
     }
 
     private String createUserTable = "CREATE TABLE USER(" +
@@ -16,9 +16,16 @@ public class DBHelper extends SQLiteOpenHelper {
             "email Text," +
             "password Text)";
 
+    private String createCourseTable = "CREATE TABLE COURSE(" +
+            "id Text primary key not null," +
+            "name Text not null," +
+            "description," +
+            "type)";
+
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(this.createUserTable);
+        db.execSQL(this.createCourseTable);
         db.execSQL("INSERT INTO USER values('user01', 'Demo User 01', 'user01@gmail.com', 'abc123@')");
         db.execSQL("INSERT INTO USER values('user02', 'Demo User 02', 'user02@gmail.com', 'abc123@')");
     }

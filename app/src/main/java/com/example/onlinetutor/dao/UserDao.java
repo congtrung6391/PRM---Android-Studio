@@ -52,7 +52,7 @@ public class UserDao {
             String username = cs.getString(0);
             String fullname = cs.getString(1);
             String email = cs.getString(2);
-            String password = cs.getString(2);
+            String password = cs.getString(3);
             listUser.add(new User(username,fullname, email, password));
             cs.moveToNext();
         }
