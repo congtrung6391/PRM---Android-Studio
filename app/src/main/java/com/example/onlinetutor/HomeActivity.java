@@ -25,6 +25,8 @@ public class HomeActivity extends AppCompatActivity {
     CardView physicCard;
     Button startBtn;
     Button stopBtn;
+    Button pauseBtn;
+    Intent mediaIntent;
 
     void startNotification() {
         String channel_id = "chanel_id";
@@ -50,6 +52,21 @@ public class HomeActivity extends AppCompatActivity {
         Intent i = new Intent();
     }
 
+    void startMedia() {
+        mediaIntent.setAction("com.example.action.PLAY");
+        startService(mediaIntent);
+    }
+
+    void pauseMedia() {
+        mediaIntent.setAction("com.example.action.PAUSE");
+        startService(mediaIntent);
+    }
+
+    void stopMedia() {
+        mediaIntent.setAction("com.example.action.STOP");
+        startService(mediaIntent);
+    }
+
     void onSetupComponent() {
         englishCard = findViewById(R.id.english_card);
         franceCard = findViewById(R.id.france_card);
@@ -57,9 +74,11 @@ public class HomeActivity extends AppCompatActivity {
         physicCard = findViewById((R.id.physic_card));
         startBtn = findViewById(R.id.startBtn);
         stopBtn = findViewById(R.id.stopBtn);
+        pauseBtn = findViewById(R.id.pauseBtn);
     }
 
     void onSetupIntent() {
+        mediaIntent = new Intent(this, MediaService.class);
         listIntent = new Intent(HomeActivity.this, ListActivity.class);
     }
 
@@ -99,14 +118,21 @@ public class HomeActivity extends AppCompatActivity {
         startBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)  {
-                startNotification();
+                startMedia();
+            }
+        });
+
+        pauseBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)  {
+                pauseMedia();
             }
         });
 
         stopBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)  {
-                stopNotification();
+                stopMedia();
             }
         });
     }

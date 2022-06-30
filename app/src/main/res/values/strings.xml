@@ -45,4 +45,5 @@
 
     <string name="add_course_title">Add a new course</string>
     <string name="edit_course_title">Edit course</string>
+    <string name="pause">Pause</string>
 </resources>
