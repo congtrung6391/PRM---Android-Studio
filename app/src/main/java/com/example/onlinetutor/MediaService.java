@@ -1,13 +1,10 @@
 package com.example.onlinetutor;
 
-import android.app.Activity;
 import android.app.Service;
-import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.IBinder;
-import android.support.annotation.Nullable;
-import android.util.Log;
+import androidx.annotation.Nullable;
 
 public class MediaService extends Service implements MediaPlayer.OnPreparedListener {
     private static final String ACTION_PLAY = "com.example.action.PLAY";

@@ -4,12 +4,12 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SearchView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.widget.SearchView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -20,10 +20,8 @@ import android.widget.Toast;
 
 import com.example.onlinetutor.dao.CourseDAO;
 import com.example.onlinetutor.objects.Course;
-import com.example.onlinetutor.objects.CourseType;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class ListActivity extends AppCompatActivity {
     private ArrayList<Course> mCourses;

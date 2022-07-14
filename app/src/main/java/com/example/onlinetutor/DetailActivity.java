@@ -5,8 +5,8 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,12 +21,15 @@ public class DetailActivity extends AppCompatActivity {
     private TextView courseNameTextView;
     private Button callButton;
     private Intent callIntent;
+    private Intent openMapIntent;
+    private Button openMapButton;
 
     private String phoneNumber;
 
     void onSetupComponent() {
         courseNameTextView = findViewById(R.id.detail_course_name);
         callButton = findViewById(R.id.call_tutor_button);
+        openMapButton = findViewById(R.id.open_map_button);
     }
 
     void onSetupData() {
@@ -40,6 +43,7 @@ public class DetailActivity extends AppCompatActivity {
     void onSetupIntent() {
         callIntent = new Intent(Intent.ACTION_CALL);
         callIntent.setData(Uri.parse("tel:" + phoneNumber));
+        openMapIntent = new Intent(DetailActivity.this, MapsActivity.class);
     }
 
     @SuppressLint("MissingPermission")
@@ -51,6 +55,10 @@ public class DetailActivity extends AppCompatActivity {
                     Toast.LENGTH_LONG).show();
             ex.printStackTrace();
         }
+    }
+
+    private void openMap() {
+        startActivity(openMapIntent);
     }
 
     void askPermissionAndCall() {
@@ -78,6 +86,11 @@ public class DetailActivity extends AppCompatActivity {
             public void onClick(View v) {
                 askPermissionAndCall();
             }
+        });
+
+        this.openMapButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { openMap(); }
         });
     }
 
