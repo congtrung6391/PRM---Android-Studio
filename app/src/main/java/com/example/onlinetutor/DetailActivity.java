@@ -14,11 +14,16 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.onlinetutor.dao.CourseDAO;
+import com.example.onlinetutor.objects.Course;
+
 public class DetailActivity extends AppCompatActivity {
     private static final int MY_PERMISSION_REQUEST_CODE_CALL_PHONE = 555;
     private static final String LOG_TAG = "DetailActivity";
 
+    private TextView courseIdTextView;
     private TextView courseNameTextView;
+    private TextView courseDescriptionTextView;
     private Button callButton;
     private Intent callIntent;
     private Intent openMapIntent;
@@ -26,18 +31,25 @@ public class DetailActivity extends AppCompatActivity {
 
     private String phoneNumber;
 
+    CourseDAO courseDao;
+
     void onSetupComponent() {
         courseNameTextView = findViewById(R.id.detail_course_name);
+        courseIdTextView = findViewById(R.id.detail_course_id);
+        courseDescriptionTextView = findViewById(R.id.detail_course_description);
         callButton = findViewById(R.id.call_tutor_button);
         openMapButton = findViewById(R.id.open_map_button);
     }
 
     void onSetupData() {
         Intent intent = getIntent();
-        String courseName = intent.getStringExtra("course_name");
+        int courseId = Integer.parseInt(intent.getStringExtra("course_id"));
+        Course course = courseDao.get(courseId);
         phoneNumber = "+84921221833";
         callButton.setText("Call tutor: " + phoneNumber);
-        courseNameTextView.setText(courseName);
+        courseIdTextView.setText("ID: " + courseId + "");
+        courseNameTextView.setText("Name: " + course.getCourseName());
+        courseDescriptionTextView.setText("Description: " + course.getCourseDescription());
     }
 
     void onSetupIntent() {
@@ -99,10 +111,12 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
+        courseDao = new CourseDAO(DetailActivity.this);
+
         onSetupComponent();
-        onSetupData();
         onSetupIntent();
         onSetupListener();
+        onSetupData();
     }
 
     @Override

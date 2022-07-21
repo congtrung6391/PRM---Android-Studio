@@ -17,7 +17,7 @@ public class DBHelper extends SQLiteOpenHelper {
             "password Text)";
 
     private String createCourseTable = "CREATE TABLE COURSE(" +
-            "id Text primary key not null," +
+            "id Number primary key not null," +
             "name Text not null," +
             "description," +
             "type)";
@@ -33,6 +33,7 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS USER");
+        db.execSQL("DROP TABLE IF EXISTS COURSE");
         onCreate(db);
 
     }

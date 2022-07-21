@@ -68,7 +68,7 @@ public class AddEditCourse extends AppCompatActivity {
     }
 
     private boolean onSave() {
-        String id = idText.getText().toString();
+        int id = Integer.parseInt(idText.getText().toString());
         String name = nameText.getText().toString();
         String des = desText.getText().toString();
         String type = typeText.getText().toString();

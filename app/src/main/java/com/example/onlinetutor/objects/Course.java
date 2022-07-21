@@ -3,19 +3,19 @@ package com.example.onlinetutor.objects;
 import java.io.Serializable;
 
 public class Course implements Serializable {
-    private String id;
+    private int id;
     private String courseName;
     private String courseDescription;
     private String courseType;
 
-    public Course(String id, String name, String des, String type) {
+    public Course(int id, String name, String des, String type) {
         this.id = id;
         this.courseName = name;
         this.courseDescription = des;
         this.courseType = type;
     }
 
-    public String getId() { return this.id; }
+    public int getId() { return this.id; }
 
     public String getCourseDescription() {
         return courseDescription;

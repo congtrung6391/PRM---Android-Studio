@@ -8,6 +8,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.onlinetutor.dao.UserDao;
+import com.example.onlinetutor.objects.User;
+
 public class RegisterActivity extends AppCompatActivity {
     private static final String LOG_TAG = "RegisterActivity";
     Button registerButton;
@@ -18,6 +21,7 @@ public class RegisterActivity extends AppCompatActivity {
     TextView emailTextView;
     TextView fullnameTextView;
     Intent loginIntent;
+    UserDao userDao;
 
     void onSetupController() {
         registerButton = findViewById(R.id.register_button);
@@ -27,6 +31,7 @@ public class RegisterActivity extends AppCompatActivity {
         confirmPasswordTextView = findViewById(R.id.confirm_password_textview);
         emailTextView = findViewById(R.id.email_textview);
         fullnameTextView = findViewById(R.id.fullname_textview);
+        userDao = new UserDao(RegisterActivity.this);
     }
 
     void onSetupIntent() {
@@ -52,7 +57,7 @@ public class RegisterActivity extends AppCompatActivity {
                         fullname,
                         password,
                         confirmPassword
-                )) {
+                ) && userDao.add(new User(username, fullname, email, password))) {
                     startActivity(loginIntent);
                 } else {
                     Toast.makeText(RegisterActivity.this, "Unvalid form", Toast.LENGTH_LONG).show();

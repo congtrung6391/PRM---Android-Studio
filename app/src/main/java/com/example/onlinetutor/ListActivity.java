@@ -143,7 +143,7 @@ public class ListActivity extends AppCompatActivity {
         registerForContextMenu(mRecyclerCourse);
 
         mCourses = new ArrayList<Course>();
-        createHeroList(filterType, filterName);
+        createHeroList();
 
         mCourseAdapter = new CourseAdapter(this, mCourses);
 
@@ -188,9 +188,6 @@ public class ListActivity extends AppCompatActivity {
 
         // Handle item selection
         switch (item.getItemId()) {
-            case R.id.my_course:
-                openMyCourse();
-                return true;
             case R.id.log_out:
                 logout();
                 return true;
@@ -207,14 +204,15 @@ public class ListActivity extends AppCompatActivity {
     private void handleIntent(Intent intent) {
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
+            Log.d("LIST", "handleIntent: " + query);
             filterName = query;
         }
         filterType = intent.getStringExtra("class_type");
     }
 
-    private void createHeroList(String type, String filter) {
-        Log.d("List", mCourses.toString());
-        mCourses = courseDao.readAll(type, filter);
+    private void createHeroList() {
+        Log.d("LIST", "createHeroList: " + filterName);
+        mCourses = courseDao.readAll(filterType, filterName);
     }
 
     private void openMyCourse() {
@@ -233,7 +231,6 @@ public class ListActivity extends AppCompatActivity {
 
     private void openDetail(String id) {
         detailIntent.putExtra("course_id", id);
-        detailIntent.putExtra("course_name", id);
         startActivity(detailIntent);
     }
 

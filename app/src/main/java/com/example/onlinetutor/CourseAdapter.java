@@ -31,7 +31,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
         private TextView descriptionTextView;
         private ImageButton editButton;
         private ImageButton deleteButton;
-        public String courseId;
+        public int courseId;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -45,8 +45,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
         @Override
         public void onCreateContextMenu(ContextMenu menu, View v,
                                         ContextMenu.ContextMenuInfo menuInfo) {
-            menu.add(Menu.NONE, R.id.add_course, 0, R.string.add_course);
-            menu.add(Menu.NONE, R.id.view_course, 10, R.string.view_course);
+            menu.add(courseId, R.id.view_course, 10, R.string.view_course);
         }
     }
 
@@ -103,7 +102,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, AddEditCourse.class);
-                intent.putExtra("id", course.getId());
+                intent.putExtra("id", course.getId() + "");
                 intent.putExtra("name", course.getCourseName());
                 intent.putExtra("des", course.getCourseDescription());
                 intent.putExtra("type", course.getCourseType());
